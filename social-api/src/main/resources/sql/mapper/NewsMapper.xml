@@ -4,5 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.tmon.social.api.dao.mapper.NewsMapper">
 	<select id="getNewsList" resultType="news">
+		SELECT
+			GROUP_CONCAT(corp_name) AS socialName, link, title, preview, image, DATE, provider
+		FROM
+			news, corporation, news_corp_relation
+		WHERE
+			news.news_id = news_corp_relation.news_id AND
+			news_corp_relation.corp_id = corporation.corp_id
+		GROUP BY
+			link
 	</select>
 </mapper>

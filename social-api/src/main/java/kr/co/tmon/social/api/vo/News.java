@@ -3,6 +3,8 @@ package kr.co.tmon.social.api.vo;
 /**
  * @author Yunho Lee
  * 
+ *         DB에서 가져온 뉴스 데이터를 담는 객체
+ * 
  */
 public class News {
 	private String socialName;
