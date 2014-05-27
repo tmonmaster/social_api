@@ -1,0 +1,9 @@
+#log4j
+logLevel=INFO
+logAppender=stdout
+logFileName=D:/social_batch/socialDataLog.log
+
+# DB url, username, password
+url=release
+username=release
+password=release
