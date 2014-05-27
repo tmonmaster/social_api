@@ -1,7 +1,5 @@
 package kr.co.tmon.social.api.controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.tmon.social.api.service.NewsService;
