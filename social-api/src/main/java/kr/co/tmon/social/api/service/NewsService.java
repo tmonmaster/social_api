@@ -2,8 +2,6 @@ package kr.co.tmon.social.api.service;
 
 import java.util.List;
 
-import javax.servlet.ServletOutputStream;
-
 import kr.co.tmon.social.api.dao.NewsDao;
 import kr.co.tmon.social.api.vo.News;
 
@@ -11,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author raspilla16@tmon.co.kr
+ * @author 강이경
  * 
+ * DAO 에서 NewsList를 가져와 Controller에 전달하는 클래스
  */
 @Service
 public class NewsService {
@@ -20,10 +19,7 @@ public class NewsService {
 	@Autowired
 	private NewsDao newsDao;
 
-	/**
-	 * @param outputStream
-	 */
-	public void printJaxbNewsList(ServletOutputStream outputStream) {
-		// TODO Auto-generated method stub
+	public List<News> getNewsList() {
+		return newsDao.getNewsList();
 	}
 }
