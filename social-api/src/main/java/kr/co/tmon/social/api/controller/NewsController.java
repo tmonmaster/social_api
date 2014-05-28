@@ -39,7 +39,7 @@ public class NewsController {
 		this.newsService = newsService;
 	} 
 
-	@RequestMapping("/news.xml")
+	@RequestMapping("/news")
 	@ResponseBody
 	/**
 	 * Marshalling한 결과 XML 을 string으로 return 하는 메소드
