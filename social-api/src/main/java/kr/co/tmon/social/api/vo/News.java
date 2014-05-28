@@ -1,18 +1,36 @@
 package kr.co.tmon.social.api.vo;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+
 /**
  * @author Yunho Lee
  * 
- *         DB에서 가져온 뉴스 데이터를 담는 객체
+ *  DB에서 가져온 뉴스 데이터를 담는 객체
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class News {
+	@XmlElement(name="socialName")
 	private String socialName;
+	
+	@XmlElement(name="title")
 	private String title;
+	
+	@XmlElement(name="preview")
 	private String preview;
+	
+	@XmlElement(name="image")
 	private String image;
+	
+	@XmlElement(name="date")
 	private String date;
+	
+	@XmlElement(name="link")
 	private String link;
+	
+	@XmlElement(name="provider")
 	private String provider;
 
 	public News() {}
