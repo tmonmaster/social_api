@@ -20,8 +20,7 @@ public class NewsDaoTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml", "classpath:spring/dispatcher-servlet.xml");
 		NewsDao newsDao = (NewsDao) context.getBean("newsDao");
 
-		for (News news : newsDao.getNewsList())
+		for (News news : newsDao.getNewsList("2014-05-27"))
 			System.out.println(news.toString());
-
 	}
 }

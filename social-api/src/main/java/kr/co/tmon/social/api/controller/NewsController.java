@@ -1,6 +1,8 @@
 package kr.co.tmon.social.api.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -37,9 +39,9 @@ public class NewsController {
 
 	public void setNewsService(NewsService newsService) {
 		this.newsService = newsService;
-	} 
+	}
 
-	@RequestMapping("/news.xml")
+	@RequestMapping("/news")
 	@ResponseBody
 	/**
 	 * Marshalling한 결과 XML 을 string으로 return 하는 메소드
@@ -47,13 +49,19 @@ public class NewsController {
 	 * @return String
 	 * @throws Exception
 	 */
-	public String printNewsListWithJaxb() throws Exception {
+	public String printNewsListWithJaxb(String date) throws Exception {
+		if (date == null) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			date = simpleDateFormat.format(new Date());
+		}
+
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		List<News> newsList = newsService.getNewsList();
+		List<News> newsList = newsService.getNewsList(date);
 		createNewsApiUsingJAXB(outputStream, newsList);
+
 		return outputStream.toString();
 	}
-	
+
 	/**
 	 * 
 	 * 뉴스 객체를 JAXB로 Marshalling하는 메소드

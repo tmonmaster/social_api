@@ -20,7 +20,7 @@ public class NewsDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<News> getNewsList() {
-		return sqlSession.selectList(NEWS_MAPPER + "getNewsList");
+	public List<News> getNewsList(String date) {
+		return sqlSession.selectList(NEWS_MAPPER + "getNewsList", date);
 	}
 }

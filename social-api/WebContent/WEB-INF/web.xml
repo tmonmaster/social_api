@@ -46,6 +46,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>*.xml</url-pattern>
+    <url-pattern>*.tmon</url-pattern>
   </servlet-mapping>
 </web-app>

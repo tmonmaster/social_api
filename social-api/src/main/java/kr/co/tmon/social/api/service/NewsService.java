@@ -19,7 +19,7 @@ public class NewsService {
 	@Autowired
 	private NewsDao newsDao;
 
-	public List<News> getNewsList() {
-		return newsDao.getNewsList();
+	public List<News> getNewsList(String date) {
+		return newsDao.getNewsList(date);
 	}
 }
