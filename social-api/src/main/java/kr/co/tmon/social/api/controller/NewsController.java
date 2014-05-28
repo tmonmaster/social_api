@@ -37,10 +37,6 @@ public class NewsController {
 	@Autowired
 	private NewsService newsService;
 
-	public void setNewsService(NewsService newsService) {
-		this.newsService = newsService;
-	}
-
 	@RequestMapping("/news")
 	@ResponseBody
 	/**
