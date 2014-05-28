@@ -12,7 +12,7 @@ public class AndroidAppReview {
 	private String starScore;
 	private String reviewTitle;
 	private String reviewContent;
-	private String companyId;
+	private String companyName;
 
 	public String getReviewLink() {
 		return reviewLink;
@@ -70,16 +70,16 @@ public class AndroidAppReview {
 		this.reviewContent = reviewContent;
 	}
 
-	public String getCompanyId() {
-		return companyId;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	@Override
 	public String toString() {
-		return "AndroidAppReview [reviewLink=" + reviewLink + ", userName=" + userName + ", userLink=" + userLink + ", reviewDate=" + reviewDate + ", starScore=" + starScore + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", companyId=" + companyId + "]";
+		return "AndroidAppReview [reviewLink=" + reviewLink + ", userName=" + userName + ", userLink=" + userLink + ", reviewDate=" + reviewDate + ", starScore=" + starScore + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", companyName=" + companyName + "]";
 	}
 }
