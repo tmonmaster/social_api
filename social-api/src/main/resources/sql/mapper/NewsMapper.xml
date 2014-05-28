@@ -21,8 +21,11 @@
 			AND
 			news_corp_relation.corp_id = corporation.corp_id
 			AND
-			news.date = #{date}
+			DATE(news.date) = #{date}
 		GROUP BY
 			link
+		ORDER BY
+			date
+		DESC
 	</select>
 </mapper>
