@@ -14,15 +14,24 @@
 			review_title AS
 			reviewTitle,
 			review_content AS reviewContent,
-			corp_name AS companyName
+			corp_name AS companyName,
+			android_app_name AS androidAppName,
+			android_app_version AS androidAppVersion
+			
 		FROM
 			android_app_review,
 			corporation,
-			review_corp_relation
+			android_app,
+			google_play
+			
 		WHERE
-			android_app_review.review_id = review_corp_relation.review_id
+			android_app.corp_id = corporation.corp_id
 		AND
-			review_corp_relation.corp_id = corporation.corp_id
+			android_app.android_app_id = google_play.android_app_id
+		AND
+			android_app_review.google_app_version = google_play.google_app_version
+		AND
+			android_app_review.android_app_id = google_play.android_app_id
 
 	</select>
 </mapper>
