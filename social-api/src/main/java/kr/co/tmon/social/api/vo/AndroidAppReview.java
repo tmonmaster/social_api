@@ -1,6 +1,8 @@
 package kr.co.tmon.social.api.vo;
 
 /**
+ * AndroidAppReview vo 클래스
+ * 
  * @author raspilla16@tmon.co.kr
  * 
  */
@@ -13,10 +15,13 @@ public class AndroidAppReview {
 	private String reviewTitle;
 	private String reviewContent;
 	private String companyName;
+	private String androidAppName;
+	private String androidAppVersion;
 	
-	public AndroidAppReview(){};
+	public AndroidAppReview(){}
 	
-	public AndroidAppReview(String reviewLink, String userName, String userLink, String reviewDate, String starScore, String reviewTitle, String reviewContent, String companyName) {
+	public AndroidAppReview(String reviewLink, String userName, String userLink, String reviewDate, String starScore, 
+			String reviewTitle, String reviewContent, String companyName, String androidAppName, String androidAppVersion) {
 		this.reviewLink = reviewLink;
 		this.userName = userName;
 		this.userLink = userLink;
@@ -25,8 +30,10 @@ public class AndroidAppReview {
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.companyName = companyName;
+		this.androidAppName = androidAppName;
+		this.androidAppVersion = androidAppVersion;
 	}
-
+	
 	public String getReviewLink() {
 		return reviewLink;
 	}
@@ -91,8 +98,25 @@ public class AndroidAppReview {
 		this.companyName = companyName;
 	}
 
+	public String getAndroidAppName() {
+		return androidAppName;
+	}
+
+	public void setAndroidAppName(String androidAppName) {
+		this.androidAppName = androidAppName;
+	}
+
+	public String getAndroidAppVersion() {
+		return androidAppVersion;
+	}
+
+	public void setAndroidAppVersion(String androidAppVersion) {
+		this.androidAppVersion = androidAppVersion;
+	}
+
 	@Override
 	public String toString() {
-		return "AndroidAppReview [reviewLink=" + reviewLink + ", userName=" + userName + ", userLink=" + userLink + ", reviewDate=" + reviewDate + ", starScore=" + starScore + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", companyName=" + companyName + "]";
-	}	
+		return "AndroidAppReview [reviewLink=" + reviewLink + ", userName=" + userName + ", userLink=" + userLink + ", reviewDate=" + reviewDate + ", starScore=" + starScore + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", companyName=" + companyName + ", androidAppName=" + androidAppName + ", androidAppVersion="
+				+ androidAppVersion + "]";
+	};	
 }
