@@ -32,7 +32,8 @@ public class AndroidAppReviewControllerTest {
 				"2014년 5월 28일", 
 				"20%", 
 				"안하고말지요",
-				"무슨문제인지는 모르겟지만 검색후에 아래로 내리면 다시 티몬 로그인 동그라미 화면나오고 이래서 머 하겠어요 다신안함", "티켓몬스터"));
+				"무슨문제인지는 모르겟지만 검색후에 아래로 내리면 다시 티몬 로그인 동그라미 화면나오고 이래서 머 하겠어요 다신안함", 
+				"티켓몬스터"));
 
 		when(androidAppReviewService.getAndroidAppReviewList()).thenReturn(androidAppReviewList);
 
