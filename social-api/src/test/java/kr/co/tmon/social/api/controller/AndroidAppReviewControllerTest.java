@@ -12,7 +12,7 @@ import kr.co.tmon.social.api.service.AndroidAppReviewService;
 import kr.co.tmon.social.api.vo.AndroidAppReview;
 
 /**
- * AppReviewContoller.getAppReviewListUsingJSON 테스트
+ * AndroidAppReviewContoller.getAndroidAppReviewListUsingJSON 테스트
  * 
  * @author 강이경
  * 
