@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 public class AndroidAppReviewController {
 	@Autowired
 	private AndroidAppReviewService androidAppReviewService;
+
 	/**
 	 * "/appReview" 로 요청이 들어오면 androidAppReviewList를 Json으로 변환한 결과값을 반환하는 메소드
 	 * 
@@ -32,12 +33,14 @@ public class AndroidAppReviewController {
 	@RequestMapping("/appReview")
 	@ResponseBody
 	public String getJsonForAndroidAppReviewList() {
-		List<AndroidAppReview> androidAppReviewList = androidAppReviewService.getAndroidAppReviewList();
+		List<AndroidAppReview> androidAppReviewList = androidAppReviewService
+				.getAndroidAppReviewList();
 		if (androidAppReviewList == null)
 			return null;
 
 		return convertToJson(androidAppReviewList);
 	}
+
 	/**
 	 * androidAppReviewList를 받아서 Wrapper 클래스로 싼 뒤, Json으로 변환하는 메소드
 	 * 
@@ -47,7 +50,8 @@ public class AndroidAppReviewController {
 	 */
 	private String convertToJson(List<AndroidAppReview> androidAppReviewList) {
 		Gson gson = new Gson();
-		AndroidAppReviewWrapperForMeta meta = new AndroidAppReviewWrapperForMeta(androidAppReviewList);
+		AndroidAppReviewWrapperForMeta meta = new AndroidAppReviewWrapperForMeta(
+				androidAppReviewList);
 		return gson.toJson(meta);
 	}
 }
