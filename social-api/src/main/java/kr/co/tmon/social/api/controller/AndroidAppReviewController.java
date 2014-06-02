@@ -33,8 +33,7 @@ public class AndroidAppReviewController {
 	@RequestMapping("/appReview")
 	@ResponseBody
 	public String getJsonForAndroidAppReviewList() {
-		List<AndroidAppReview> androidAppReviewList = androidAppReviewService
-				.getAndroidAppReviewList();
+		List<AndroidAppReview> androidAppReviewList = androidAppReviewService.getAndroidAppReviewList();
 		if (androidAppReviewList == null)
 			return null;
 
@@ -50,8 +49,7 @@ public class AndroidAppReviewController {
 	 */
 	private String convertToJson(List<AndroidAppReview> androidAppReviewList) {
 		Gson gson = new Gson();
-		AndroidAppReviewWrapperForMeta meta = new AndroidAppReviewWrapperForMeta(
-				androidAppReviewList);
+		AndroidAppReviewWrapperForMeta meta = new AndroidAppReviewWrapperForMeta(	androidAppReviewList);
 		return gson.toJson(meta);
 	}
 }
