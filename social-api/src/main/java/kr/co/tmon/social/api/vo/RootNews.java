@@ -7,16 +7,19 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "news")
-@XmlAccessorType(XmlAccessType.FIELD)
 /**
  * 
- *	JAXB로 Marshalling 할 대상 클래스
+ * JAXB로 Marshalling 할 대상 클래스
  * 
  * @author u_kino07
- *
+ * 
  */
+@XmlRootElement(name = "news")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RootNews {
+
+	@XmlElement(name = "itemCount")
+	private int newsListSize;
 
 	@XmlElement(name = "item")
 	private List<News> newsList;
@@ -27,6 +30,7 @@ public class RootNews {
 
 	public void setNewsList(List<News> newsList) {
 		this.newsList = newsList;
+		this.newsListSize = newsList.size();
 	}
 
 	@Override

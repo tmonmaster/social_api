@@ -37,14 +37,14 @@ public class NewsController {
 	@Autowired
 	private NewsService newsService;
 
-	@RequestMapping("/news")
-	@ResponseBody
 	/**
 	 * Marshalling한 결과 XML 을 string으로 return 하는 메소드
 	 * 
 	 * @return String
 	 * @throws Exception
 	 */
+	@RequestMapping("/news")
+	@ResponseBody
 	public String printNewsListWithJaxb(String date) throws Exception {
 		if (date == null) {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
