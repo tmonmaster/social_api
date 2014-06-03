@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- * NewsController.printNewsLi트stWithJaxb 동작 테스트
+ * NewsController.printNewsListWithJaxb 동작 테스트
  * 
  * @author u_kino07
  * 
