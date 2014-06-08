@@ -2,22 +2,28 @@ package kr.co.tmon.social.api.controller;
 
 import static org.mockito.Mockito.when;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.tmon.social.api.service.AndroidAppReviewService;
 import kr.co.tmon.social.api.vo.AndroidAppReview;
+import kr.co.tmon.social.api.vo.RootAndroidAppReview;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
+
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.google.gson.Gson;
+
 /**
- * AndroidAppReviewService에서 androidAppReviewList를 받아와서 Controller에서 Json으로 변환하는 테스트 클래스
+ * AndroidAppReviewController 테스트 클래스
  * 
  * @author 강이경
  * 
@@ -30,26 +36,20 @@ public class AndroidAppReviewControllerTest {
 	@InjectMocks
 	private AndroidAppReviewController androidAppReviewController;
 
-	List<AndroidAppReview> androidAppReviewList;
-	
 	@Before
-	public void androidAppReviewList_세팅(){
-		androidAppReviewList = new ArrayList<AndroidAppReview>();
-		androidAppReviewList	.add(new AndroidAppReview(
-						"https://play.google.com/store/apps/details?id=com.tmon&reviewId=Z3A6QU9xcFRPR2tpTTJQQUlDZXRUM21hOHg0VHRCNkIyTVVwMW5QT1E3VWRXRGRpSEM1VzBYMTJlaU9Bc01fRHR6U2dKRzNoZXUyNnNkS0pRN3FVVE5FTHc",
-						"정혜경",
-						"https://play.google.com/store/people/details?id=111359932959764103963",
-						"2014년 5월 28일",
-						"20%",
-						"안하고말지요",
-						"무슨문제인지는 모르겟지만 검색후에 아래로 내리면 다시 티몬 로그인 동그라미 화면나오고 이래서 머 하겠어요 다신안함",
-						"티켓몬스터", "tmonplus", "3.3.1"));
-	     when(androidAppReviewService.getAndroidAppReviewList()).thenReturn(androidAppReviewList);
+	public void androidAppReviewList_세팅() throws ParseException {
+		List<AndroidAppReview> dummyAndroidAppReviewList = new ArrayList<AndroidAppReview>();
+		dummyAndroidAppReviewList.add(new AndroidAppReview("reviewLink", "userName", "userLink", "reviewDate", "starScore", "reviewTitle", "reviewContent", "companyName", "androidAppName", "androidAppVersion"));
+
+		when(androidAppReviewService.selectAndroidAppReviewListBetween("2014-05-28", "2014-05-30")).thenReturn(null);
+		when(androidAppReviewService.selectAndroidAppReviewListBetween("2014-06-01", "2014-06-03")).thenReturn(dummyAndroidAppReviewList);
 	}
-	
+
 	@Test
-	public void getAndroidAppReviewList() {
-		assertNotNull(androidAppReviewList);
-		System.out.println(androidAppReviewController.getJsonForAndroidAppReviewList());
+	public void List가_null일때와_List에_내용이_있을때_각각_JSON스트링이_올바르게_출력되는지_확인() throws ParseException {
+		assertEquals(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2014-05-28", "2014-05-30"), "{\"reviewCount\":0,\"androidAppReviewList\": List is empty. }");
+
+		String expectedJsonString = "{\"reviewCount\":1,\"androidAppReviewList\":[{\"reviewLink\":\"reviewLink\",\"userName\":\"userName\",\"userLink\":\"userLink\",\"reviewDate\":\"reviewDate\",\"starScore\":\"starScore\",\"reviewTitle\":\"reviewTitle\",\"reviewContent\":\"reviewContent\",\"companyName\":\"companyName\",\"androidAppName\":\"androidAppName\",\"androidAppVersion\":\"androidAppVersion\"}]}";
+		assertEquals(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2014-06-01", "2014-06-03"), expectedJsonString);
 	}
 }
