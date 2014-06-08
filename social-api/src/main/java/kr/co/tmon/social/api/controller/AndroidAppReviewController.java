@@ -1,10 +1,11 @@
 package kr.co.tmon.social.api.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import kr.co.tmon.social.api.service.AndroidAppReviewService;
 import kr.co.tmon.social.api.vo.AndroidAppReview;
-import kr.co.tmon.social.api.vo.AndroidAppReviewWrapperForMeta;
+import kr.co.tmon.social.api.vo.RootAndroidAppReview;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,15 +30,16 @@ public class AndroidAppReviewController {
 	 * 
 	 * @return String
 	 * @author 강이경
+	 * @throws ParseException 
 	 */
 	@RequestMapping("/appReview")
 	@ResponseBody
-	public String getJsonForAndroidAppReviewList() {
-		List<AndroidAppReview> androidAppReviewList = androidAppReviewService.getAndroidAppReviewList();
+	public String getJsonStringOfAndroidAppReviewListBetween(String startDate, String endDate) throws ParseException {
+		List<AndroidAppReview> androidAppReviewList = androidAppReviewService.selectAndroidAppReviewListBetween(startDate, endDate);
 		if (androidAppReviewList == null)
-			return null;
+			return "{\"reviewCount\":0,\"androidAppReviewList\": List is empty. }";
 
-		return convertToJson(androidAppReviewList);
+		return createJsonStringBy(androidAppReviewList);
 	}
 
 	/**
@@ -47,9 +49,9 @@ public class AndroidAppReviewController {
 	 * @return String
 	 * @author 강이경
 	 */
-	private String convertToJson(List<AndroidAppReview> androidAppReviewList) {
+	private String createJsonStringBy(List<AndroidAppReview> androidAppReviewList) {
 		Gson gson = new Gson();
-		AndroidAppReviewWrapperForMeta meta = new AndroidAppReviewWrapperForMeta(	androidAppReviewList);
+		RootAndroidAppReview meta = new RootAndroidAppReview(androidAppReviewList);
 		return gson.toJson(meta);
 	}
 }
