@@ -32,6 +32,10 @@
 			android_app_review.google_app_version = google_play.google_app_version
 		AND
 			android_app_review.android_app_id = google_play.android_app_id
+		AND
+			android_app_review.review_date >= #{startDate} 
+		AND
+		    #{endDate} >= android_app_review.review_date 
 
 	</select>
 </mapper>
