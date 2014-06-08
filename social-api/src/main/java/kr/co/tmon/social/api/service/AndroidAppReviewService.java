@@ -1,5 +1,6 @@
 package kr.co.tmon.social.api.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import kr.co.tmon.social.api.dao.AndroidAppReviewDao;
@@ -19,7 +20,7 @@ public class AndroidAppReviewService {
 	@Autowired
 	private AndroidAppReviewDao androidAppReviewDao;
 
-	public List<AndroidAppReview> getAndroidAppReviewList() {
-		return androidAppReviewDao.getAndroidAppReviewList();
+	public List<AndroidAppReview> selectAndroidAppReviewListBetween(String startDate, String endDate) throws ParseException {
+		return androidAppReviewDao.selectAndroidAppReviewListBetween(startDate, endDate);
 	}
 }
