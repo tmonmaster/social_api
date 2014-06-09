@@ -1,5 +1,6 @@
 package kr.co.tmon.social.api.controller;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
@@ -7,20 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.tmon.social.api.service.AndroidAppReviewService;
+import kr.co.tmon.social.api.service.AndroidAppService;
+import kr.co.tmon.social.api.vo.AndroidApp;
 import kr.co.tmon.social.api.vo.AndroidAppReview;
-import kr.co.tmon.social.api.vo.RootAndroidAppReview;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import com.google.gson.Gson;
 
 /**
  * AndroidAppReviewController 테스트 클래스
@@ -33,6 +30,9 @@ public class AndroidAppReviewControllerTest {
 	@Mock
 	private AndroidAppReviewService androidAppReviewService;
 
+	@Mock
+	private AndroidAppService androidAppService;
+
 	@InjectMocks
 	private AndroidAppReviewController androidAppReviewController;
 
@@ -43,13 +43,19 @@ public class AndroidAppReviewControllerTest {
 
 		when(androidAppReviewService.selectAndroidAppReviewListBetween("2014-05-28", "2014-05-30")).thenReturn(null);
 		when(androidAppReviewService.selectAndroidAppReviewListBetween("2014-06-01", "2014-06-03")).thenReturn(dummyAndroidAppReviewList);
+
+		List<AndroidApp> androidAppList = new ArrayList<AndroidApp>();
+		AndroidApp androidApp = new AndroidApp();
+		androidApp.setAppName("티몬");
+		androidApp.setAverageScore("4.1");
+		androidAppList.add(androidApp);
+
+		when(androidAppService.getAndroidAppList()).thenReturn(androidAppList);
 	}
 
 	@Test
 	public void List가_null일때와_List에_내용이_있을때_각각_JSON스트링이_올바르게_출력되는지_확인() throws ParseException {
-		assertEquals(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2014-05-28", "2014-05-30"), "{\"reviewCount\":0,\"androidAppReviewList\": List is empty. }");
-
-		String expectedJsonString = "{\"reviewCount\":1,\"androidAppReviewList\":[{\"reviewLink\":\"reviewLink\",\"userName\":\"userName\",\"userLink\":\"userLink\",\"reviewDate\":\"reviewDate\",\"starScore\":\"starScore\",\"reviewTitle\":\"reviewTitle\",\"reviewContent\":\"reviewContent\",\"companyName\":\"companyName\",\"androidAppName\":\"androidAppName\",\"androidAppVersion\":\"androidAppVersion\"}]}";
-		assertEquals(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2014-06-01", "2014-06-03"), expectedJsonString);
+		System.out.println(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2011-05-28", "2011-05-30").getBody());
+		assertEquals(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2011-05-28", "2011-05-30").getBody(), "{\"scoreList\":[{\"appName\":\"티몬\",\"averageScore\":\"4.1\"}],\"reviewList\":[]}");
 	}
 }

@@ -2,35 +2,30 @@ package kr.co.tmon.social.api.vo;
 
 import java.util.List;
 
-/**
- * MetaData를 위해 생성한 래퍼 클래스
- * 
- * @author 강이경
- * 
- */
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "androidReview")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RootAndroidAppReview {
-	private int reviewCount;
-	private List<AndroidAppReview> androidAppReviewList;
 
-	public RootAndroidAppReview(List<AndroidAppReview> androidAppReviewList) {
-		this.reviewCount = androidAppReviewList.size();
-		this.androidAppReviewList = androidAppReviewList;
+	@XmlElementWrapper(name = "scoreList")
+	@XmlElement(name = "score")
+	private List<AndroidApp> scoreList;
+	@XmlElementWrapper(name = "reviewList")
+	@XmlElement(name = "review")
+	private List<AndroidAppReview> reviewList;
+
+	public RootAndroidAppReview() {} // JAXB 마샬링에 필요한 기본 생성자
+
+	public void setReviewList(List<AndroidAppReview> reviewList) {
+		this.reviewList = reviewList;
 	}
 
-	public int getReviewCount() {
-		return reviewCount;
-	}
-
-	public void setReviewCount(int reviewCount) {
-		this.reviewCount = reviewCount;
-	}
-
-	public List<AndroidAppReview> getAndroidAppReviewList() {
-		return androidAppReviewList;
-	}
-
-	public void setAndroidAppReviewList(
-			List<AndroidAppReview> androidAppReviewList) {
-		this.androidAppReviewList = androidAppReviewList;
+	public void setAverageScoreList(List<AndroidApp> averageScoreList) {
+		this.scoreList = averageScoreList;
 	}
 }

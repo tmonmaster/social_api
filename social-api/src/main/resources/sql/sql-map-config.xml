@@ -10,11 +10,13 @@
 	<typeAliases>
 		<typeAlias type="kr.co.tmon.social.api.vo.News" alias="news" />
 		<typeAlias type="kr.co.tmon.social.api.vo.AndroidAppReview" alias="androidAppReview" />
+		<typeAlias type="kr.co.tmon.social.api.vo.AndroidApp" alias="androidApp" />
 	</typeAliases>
 
 	<!-- SQL Definition :: file include -->
 	<mappers>
 		<mapper resource="sql/mapper/NewsMapper.xml" />
+		<mapper resource="sql/mapper/AndroidAppReviewMapper.xml" />
 		<mapper resource="sql/mapper/AndroidAppMapper.xml" />
 	</mappers>
 

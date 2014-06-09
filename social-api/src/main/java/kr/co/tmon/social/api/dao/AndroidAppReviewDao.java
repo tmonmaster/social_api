@@ -3,7 +3,6 @@ package kr.co.tmon.social.api.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class AndroidAppReviewDao {
-	private static final String ANDROID_APP_REVIEW_MAPPER = "kr.co.tmon.social.api.dao.mapper.AndroidAppMapper.";
+	private static final String ANDROID_APP_REVIEW_MAPPER = "kr.co.tmon.social.api.dao.mapper.AndroidAppReviewMapper.";
 	@Autowired
 	private SqlSession sqlSession;
 	

@@ -1,11 +1,15 @@
 package kr.co.tmon.social.api.vo;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 /**
  * AndroidAppReview vo 클래스
  * 
  * @author raspilla16@tmon.co.kr
  * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class AndroidAppReview {
 	private String reviewLink;
 	private String userName;
@@ -17,11 +21,10 @@ public class AndroidAppReview {
 	private String companyName;
 	private String androidAppName;
 	private String androidAppVersion;
-	
-	public AndroidAppReview(){}
-	
-	public AndroidAppReview(String reviewLink, String userName, String userLink, String reviewDate, String starScore, 
-			String reviewTitle, String reviewContent, String companyName, String androidAppName, String androidAppVersion) {
+
+	public AndroidAppReview() {}
+
+	public AndroidAppReview(String reviewLink, String userName, String userLink, String reviewDate, String starScore, String reviewTitle, String reviewContent, String companyName, String androidAppName, String androidAppVersion) {
 		this.reviewLink = reviewLink;
 		this.userName = userName;
 		this.userLink = userLink;
@@ -33,7 +36,7 @@ public class AndroidAppReview {
 		this.androidAppName = androidAppName;
 		this.androidAppVersion = androidAppVersion;
 	}
-	
+
 	public String getReviewLink() {
 		return reviewLink;
 	}
@@ -118,5 +121,5 @@ public class AndroidAppReview {
 	public String toString() {
 		return "AndroidAppReview [reviewLink=" + reviewLink + ", userName=" + userName + ", userLink=" + userLink + ", reviewDate=" + reviewDate + ", starScore=" + starScore + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", companyName=" + companyName + ", androidAppName=" + androidAppName + ", androidAppVersion="
 				+ androidAppVersion + "]";
-	};	
+	};
 }

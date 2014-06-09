@@ -38,7 +38,7 @@ public class NewsControllerTest {
 
 		when(newsService.getNewsList("2014-05-27")).thenReturn(newsList);
 
-		String xmlString = newsController.printNewsListWithJaxb("2014-05-27");
+		String xmlString = newsController.printNewsList("2014-05-27").getBody();
 		System.out.println(xmlString);
 	}
 }

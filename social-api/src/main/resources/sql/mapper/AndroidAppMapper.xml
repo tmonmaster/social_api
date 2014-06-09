@@ -3,39 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.tmon.social.api.dao.mapper.AndroidAppMapper">
-	<select id="getAndroidAppReviewList" resultType="androidAppReview">
-
-		SELECT
-			review_link AS reviewLink,
-			user_name AS userName,
-			user_link AS userLink,
-			review_date AS reviewDate,
-			star_score AS starScore,
-			review_title AS
-			reviewTitle,
-			review_content AS reviewContent,
-			corp_name AS companyName,
-			android_app_name AS androidAppName,
-			android_app_version AS androidAppVersion
-			
-		FROM
-			android_app_review,
-			corporation,
-			android_app,
-			google_play
-			
-		WHERE
-			android_app.corp_id = corporation.corp_id
-		AND
-			android_app.android_app_id = google_play.android_app_id
-		AND
-			android_app_review.google_app_version = google_play.google_app_version
-		AND
-			android_app_review.android_app_id = google_play.android_app_id
-		AND
-			android_app_review.review_date >= #{startDate} 
-		AND
-		    #{endDate} >= android_app_review.review_date 
-
+	<select id="getAndroidAppList" resultType="androidApp">
+	SELECT
+		android_app_name AS appName,
+		android_app_score AS averageScore
+	FROM
+		android_app
 	</select>
 </mapper>
