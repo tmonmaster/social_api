@@ -47,13 +47,9 @@ public class AndroidAppReviewDao {
 		if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)){
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar calendar = Calendar.getInstance();
-			startDate = dateFormat.format(calendar.getTime());
-			calendar.add(Calendar.DATE, 7);
 			endDate = dateFormat.format(calendar.getTime());
-		}
-		
-		if(StringUtils.isNotEmpty(startDate) && StringUtils.isNotEmpty(endDate)){
-			
+			calendar.add(Calendar.DATE, -7);
+			startDate = dateFormat.format(calendar.getTime());
 		}
 		
 		Map<String, String> map = new HashMap<String, String>();

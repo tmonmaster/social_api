@@ -35,16 +35,20 @@ public class AndroidAppReviewController {
 	 * @return String
 	 * @author 강이경
 	 * @throws ParseException
+	 * @throws Exception
 	 */
 	@RequestMapping("/appReview")
 	@ResponseBody
-	public ResponseEntity<String> getJsonStringOfAndroidAppReviewListBetween(String startDate, String endDate) throws ParseException {
+	public ResponseEntity<String> getJsonStringOfAndroidAppReviewListBetween(String startDate, String endDate, String type) throws Exception {
 		List<AndroidAppReview> androidAppReviewList = androidAppReviewService.selectAndroidAppReviewListBetween(startDate, endDate);
 		List<AndroidApp> androidAppList = androidAppService.getAndroidAppList();
 
 		RootAndroidAppReview androidAppReviewWithMeta = new RootAndroidAppReview();
 		androidAppReviewWithMeta.setReviewList(androidAppReviewList);
 		androidAppReviewWithMeta.setAverageScoreList(androidAppList);
+
+		if (type != null && type.equalsIgnoreCase("xml"))
+			return ResponseEntityUtil.getXmlResponseEntity(androidAppReviewWithMeta);
 
 		return ResponseEntityUtil.getJsonResponseEntity(androidAppReviewWithMeta);
 	}

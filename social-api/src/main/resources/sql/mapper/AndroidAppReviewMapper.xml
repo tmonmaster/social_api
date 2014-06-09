@@ -34,7 +34,9 @@
 		AND
 			android_app_review.review_date >= #{startDate} 
 		AND
-		    #{endDate} >= android_app_review.review_date 
+		    #{endDate} >= android_app_review.review_date
+		ORDER BY
+			review_date DESC
 
 	</select>
 </mapper>
