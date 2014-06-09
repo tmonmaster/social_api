@@ -39,7 +39,7 @@ public class AndroidAppReviewController {
 	 */
 	@RequestMapping("/appReview")
 	@ResponseBody
-	public ResponseEntity<String> getJsonStringOfAndroidAppReviewListBetween(String startDate, String endDate, String type) throws Exception {
+	public ResponseEntity<String> getAndroidAppReviewList(String startDate, String endDate, String type) throws Exception {
 		List<AndroidAppReview> androidAppReviewList = androidAppReviewService.selectAndroidAppReviewListBetween(startDate, endDate);
 		List<AndroidApp> androidAppList = androidAppService.getAndroidAppList();
 

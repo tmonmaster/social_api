@@ -55,7 +55,7 @@ public class AndroidAppReviewControllerTest {
 
 	@Test
 	public void List가_null일때와_List에_내용이_있을때_각각_JSON스트링이_올바르게_출력되는지_확인() throws Exception {
-		System.out.println(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2011-05-28", "2011-05-30", null).getBody());
-		assertEquals(androidAppReviewController.getJsonStringOfAndroidAppReviewListBetween("2011-05-28", "2011-05-30", null).getBody(), "{\"scoreList\":[{\"appName\":\"티몬\",\"averageScore\":\"4.1\"}],\"reviewList\":[]}");
+		System.out.println(androidAppReviewController.getAndroidAppReviewList("2011-05-28", "2011-05-30", null).getBody());
+		assertEquals(androidAppReviewController.getAndroidAppReviewList("2011-05-28", "2011-05-30", null).getBody(), "{\"scoreList\":[{\"appName\":\"티몬\",\"averageScore\":\"4.1\"}],\"reviewList\":[]}");
 	}
 }
