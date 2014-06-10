@@ -26,6 +26,7 @@ public class News {
 	private String link;
 	@XmlElement(name = "provider")
 	private String provider;
+	private int relationScore;
 
 	public News() {}
 
@@ -95,9 +96,17 @@ public class News {
 		this.provider = provider;
 	}
 
+	public int getRelationScore() {
+		return relationScore;
+	}
+
+	public void setRelationScore(int relationScore) {
+		this.relationScore = relationScore;
+	}
+
 	@Override
 	public String toString() {
-		return "NaverNews [socialName=" + socialName + ", title=" + title + ", preview=" + preview + ", image=" + image + ", date=" + date + ", link=" + link + ", provider=" + provider + "]";
+		return "News [socialName=" + socialName + ", title=" + title + ", preview=" + preview + ", image=" + image + ", date=" + date + ", link=" + link + ", provider=" + provider + ", relationScore=" + relationScore + "]";
 	}
 
 }
