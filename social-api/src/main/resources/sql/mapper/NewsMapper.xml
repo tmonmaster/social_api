@@ -5,13 +5,14 @@
 <mapper namespace="kr.co.tmon.social.api.dao.mapper.NewsMapper">
 	<select id="getNewsList" parameterType="string" resultType="news">
 		SELECT
-			GROUP_CONCAT(corp_name) AS socialName,
+			GROUP_CONCAT(corp_name ORDER BY corp_name DESC) AS socialName,
 			link AS link,
 			title AS title,
 			preview AS preview,
 			image AS image,
 			date AS date,
-			provider AS provider
+			provider AS provider,
+			relation_score AS relationScore
 		FROM
 			news,
 			corporation,
@@ -25,7 +26,7 @@
 		GROUP BY
 			link
 		ORDER BY
-			date
+			relation_score
 		DESC
 	</select>
 </mapper>
