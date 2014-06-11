@@ -26,7 +26,9 @@ public class News {
 	private String link;
 	@XmlElement(name = "provider")
 	private String provider;
-	private int relationScore;
+	@XmlElement(name = "similarNews")
+	private int similarNews;
+	private int relationScore;	
 
 	public News() {}
 
@@ -38,6 +40,14 @@ public class News {
 		this.date = date;
 		this.link = link;
 		this.provider = provider;
+	}
+
+	public int getSimilarNews() {
+		return similarNews;
+	}
+
+	public void setSimilarNews(int similarNews) {
+		this.similarNews = similarNews;
 	}
 
 	public String getSocialName() {
@@ -106,7 +116,6 @@ public class News {
 
 	@Override
 	public String toString() {
-		return "News [socialName=" + socialName + ", title=" + title + ", preview=" + preview + ", image=" + image + ", date=" + date + ", link=" + link + ", provider=" + provider + ", relationScore=" + relationScore + "]";
+		return "News [socialName=" + socialName + ", title=" + title + ", preview=" + preview + ", image=" + image + ", date=" + date + ", link=" + link + ", provider=" + provider + ", similarNews=" + similarNews + ", relationScore=" + relationScore + "]";
 	}
-
 }

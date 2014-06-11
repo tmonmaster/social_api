@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import kr.co.tmon.social.api.controller.util.ResponseEntityUtil;
+import kr.co.tmon.social.api.service.NewsFilteringService;
 import kr.co.tmon.social.api.service.NewsService;
 import kr.co.tmon.social.api.vo.News;
 import kr.co.tmon.social.api.vo.RootNews;
@@ -26,6 +27,9 @@ public class NewsController {
 	@Autowired
 	private NewsService newsService;
 
+	@Autowired
+	private NewsFilteringService newsFilteringService;
+
 	/**
 	 * Marshalling한 결과 XML 을 string으로 return 하는 메소드
 	 * 
@@ -40,6 +44,8 @@ public class NewsController {
 		}
 
 		List<News> newsList = newsService.getNewsList(date);
+
+		newsFilteringService.filterNewsList(newsList);
 
 		RootNews rootNews = new RootNews();
 		rootNews.setNewsList(newsList);

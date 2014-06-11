@@ -26,7 +26,7 @@
 		GROUP BY
 			link
 		ORDER BY
-			relation_score
-		DESC
+			news.date DESC,
+			news_corp_relation.relation_score DESC
 	</select>
 </mapper>
