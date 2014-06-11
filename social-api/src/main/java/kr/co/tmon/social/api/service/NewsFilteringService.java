@@ -33,17 +33,18 @@ public class NewsFilteringService {
 
 		logBeforeFiltering(newsList, wordsAndScoreList);
 		removeNewsBelowCutLine(newsList, wordsAndScoreList);
+
 		logAfterFiltering(newsList);
 	}
 
 	private List<WordsAndScore> makeWordsAndScoreList(List<News> newsList) {
 		List<WordsAndScore> wordsAndScoreList = new ArrayList<WordsAndScore>();
-	
+
 		for (News news : newsList) {
 			String[] stringArray = news.getTitle().replaceAll(REGEX_FILTER, BLANK).trim().split(REGEX_SEPERATOR);
 			wordsAndScoreList.add(new WordsAndScore(stringArray));
 		}
-	
+
 		return wordsAndScoreList;
 	}
 

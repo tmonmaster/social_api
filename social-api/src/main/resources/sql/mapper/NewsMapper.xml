@@ -8,7 +8,7 @@
 			GROUP_CONCAT(corp_name ORDER BY corp_name DESC) AS socialName,
 			link AS link,
 			title AS title,
-			preview AS preview,
+			GROUP_CONCAT(preview ORDER BY corp_name DESC SEPARATOR '(PREVIEW_SEPARATOR)') AS preview,
 			image AS image,
 			date AS date,
 			provider AS provider,
@@ -26,7 +26,6 @@
 		GROUP BY
 			link
 		ORDER BY
-			news.date DESC,
-			news_corp_relation.relation_score DESC
+			news.date DESC
 	</select>
 </mapper>

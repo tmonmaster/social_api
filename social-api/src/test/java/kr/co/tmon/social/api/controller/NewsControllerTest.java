@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.co.tmon.social.api.service.NewsFilteringService;
 import kr.co.tmon.social.api.service.NewsService;
 import kr.co.tmon.social.api.vo.News;
 
@@ -25,6 +26,9 @@ public class NewsControllerTest {
 
 	@Mock
 	private NewsService newsService;
+	
+	@Mock
+	private NewsFilteringService newsFilteringService;
 
 	@InjectMocks
 	private NewsController newsController;
