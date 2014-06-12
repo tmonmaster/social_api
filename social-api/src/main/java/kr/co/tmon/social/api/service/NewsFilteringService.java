@@ -92,8 +92,12 @@ public class NewsFilteringService {
 
 			if (wordsAndScore.score > CUT_LINE)
 				newsList.remove(index);
-			else
-				newsList.get(index).setSimilarNews(wordsAndScore.similarNewsCount);
+			else {
+				News news = newsList.get(index);
+				news.setSimilarNews(wordsAndScore.similarNewsCount);
+				if (wordsAndScore.similarNewsCount != 0)
+					news.setProvider(news.getProvider() + " 외 " + wordsAndScore.similarNewsCount + "건");
+			}
 		}
 	}
 
@@ -126,6 +130,7 @@ public class NewsFilteringService {
 		private String[] wordArray;
 		private int score;
 		private int similarNewsCount;
+		private boolean isMajorNews;
 
 		private WordsAndScore(String[] wordArray) {
 			this.wordArray = wordArray;
@@ -133,7 +138,7 @@ public class NewsFilteringService {
 
 		@Override
 		public String toString() {
-			return "WordsAndScore [wordArray=" + Arrays.toString(wordArray) + ", score=" + score + ", similarNewsCount=" + similarNewsCount + "]";
+			return "WordsAndScore [wordArray=" + Arrays.toString(wordArray) + ", score=" + score + ", similarNewsCount=" + similarNewsCount + ", isMajorNews=" + isMajorNews + "]";
 		}
 	}
 }

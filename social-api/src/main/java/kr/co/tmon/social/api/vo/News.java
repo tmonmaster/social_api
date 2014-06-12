@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
  *         DB에서 가져온 뉴스 데이터를 담는 객체
  * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class News {
 	@XmlElement(name = "socialName")
 	private String socialName;
