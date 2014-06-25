@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class NewsFilteringService {
 	private static final int CUT_LINE = 0;
 	private static final float BASE_SIMILARITY = 0.4f;
-	private static final int TIME_MILLIS_A_DAY = 1000 * 60 * 60 * 24;
+	private static final int DEFAULT_COVERAGE_TIME = 1000 * 60 * 60 * 48;
 	private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	private static final String REGEX_FILTER = "[^a-zA-Z0-9가-힣\\s]";
 	private static final String REGEX_SEPERATOR = "\\s{1,}";
@@ -27,7 +27,7 @@ public class NewsFilteringService {
 
 	private Logger logger = Logger.getLogger(this.getClass());
 
-	public void filterNewsList(List<News> newsList) throws Exception {
+	public List<News> filterNewsList(List<News> newsList) throws Exception {
 		List<WordsAndScore> wordsAndScoreList = makeWordsAndScoreList(newsList);
 		initWordsAndScore(newsList, wordsAndScoreList);
 
@@ -35,6 +35,8 @@ public class NewsFilteringService {
 		removeNewsBelowCutLine(newsList, wordsAndScoreList);
 
 		logAfterFiltering(newsList);
+
+		return newsList;
 	}
 
 	private List<WordsAndScore> makeWordsAndScoreList(List<News> newsList) {
@@ -56,7 +58,7 @@ public class NewsFilteringService {
 				if (pivot == target)
 					continue;
 
-				if (getTimeGap(pivot, target, newsList) > TIME_MILLIS_A_DAY)
+				if (getTimeGap(pivot, target, newsList) > DEFAULT_COVERAGE_TIME)
 					continue;
 
 				int totalLenth = 0;

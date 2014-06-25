@@ -6,8 +6,22 @@
 	<select id="getAndroidAppList" resultType="androidApp">
 	SELECT
 		android_app_name AS appName,
-		android_app_score AS averageScore
+		android_app_score AS averageScore,
+		android_ranking AS ranking
 	FROM
-		android_app
+		(
+		SELECT 
+			android_app_name,
+			android_app_score,
+			android_ranking
+		FROM
+			android_app,
+			android_ranking
+		WHERE
+			android_app.android_app_id = android_ranking.android_app_id
+		ORDER BY
+			ranking_date DESC
+		) AS app_data
+	GROUP BY android_app_name
 	</select>
 </mapper>

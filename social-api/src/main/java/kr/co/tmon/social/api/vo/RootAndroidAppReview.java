@@ -9,15 +9,16 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "androidReview")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class RootAndroidAppReview {
 
-	@XmlElementWrapper(name = "scoreList")
-	@XmlElement(name = "score")
+	@XmlElementWrapper(name = "appList")
+	@XmlElement(name = "app")
 	private List<AndroidApp> scoreList;
 	@XmlElementWrapper(name = "reviewList")
 	@XmlElement(name = "review")
 	private List<AndroidAppReview> reviewList;
+	
 
 	public RootAndroidAppReview() {} // JAXB 마샬링에 필요한 기본 생성자
 

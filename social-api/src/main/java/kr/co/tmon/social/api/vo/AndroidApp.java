@@ -8,11 +8,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 정승현 - RASPILLA16@tmon.co.kr
  * 
  */
-@XmlRootElement(name = "score")
+@XmlRootElement(name = "app")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AndroidApp {
 	private String appName;
 	private String averageScore;
+	private String ranking;
 
 	public String getAppName() {
 		return appName;
@@ -30,8 +31,12 @@ public class AndroidApp {
 		this.averageScore = averageScore;
 	}
 
+	public void setRanking(String ranking) {
+		this.ranking = ranking;
+	}
+
 	@Override
 	public String toString() {
-		return "AndroidApp [appName=" + appName + ", averageScore=" + averageScore + "]";
+		return "AndroidApp [appName=" + appName + ", averageScore=" + averageScore + ", ranking=" + ranking + "]";
 	}
 }
