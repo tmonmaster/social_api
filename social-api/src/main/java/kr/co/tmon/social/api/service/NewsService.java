@@ -1,6 +1,8 @@
 package kr.co.tmon.social.api.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import kr.co.tmon.social.api.dao.NewsDao;
@@ -41,6 +43,8 @@ public class NewsService {
 		filteredAllNewsList.addAll(tmonNewsList);
 		filteredAllNewsList.addAll(coupangNewsList);
 		filteredAllNewsList.addAll(wemakepriceNewsList);
+
+		Collections.sort(filteredAllNewsList, new DateDescCompare());
 
 		return filteredAllNewsList;
 	}
@@ -87,5 +91,14 @@ public class NewsService {
 				news.setPreview(news.getPreview().substring(0, indexOfChar));
 			}
 		}
+	}
+
+	static class DateDescCompare implements Comparator<News> {
+
+		@Override
+		public int compare(News o1, News o2) {
+			return o2.getDate().compareTo(o1.getDate());
+		}
+
 	}
 }
