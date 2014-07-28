@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.co.tmon.social.api</groupId>
 	<artifactId>social-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 
 	<name>social-api</name>
@@ -50,24 +50,6 @@
 			<properties>
 				<environment>local</environment>
 				<resource.filter>${basedir}/build/filter/build-local.filter</resource.filter>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>alpha</id>
-			<properties>
-				<environment>alpha</environment>
-				<maven.test.skip>true</maven.test.skip>
-				<resource.filter>${basedir}/build/filter/build-alpha.filter</resource.filter>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>beta</id>
-			<properties>
-				<environment>beta</environment>
-				<maven.test.skip>true</maven.test.skip>
-				<resource.filter>${basedir}/build/filter/build-beta.filter</resource.filter>
 			</properties>
 		</profile>
 
@@ -130,7 +112,6 @@
 
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
 				<configuration>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -157,7 +138,7 @@
 							<tasks>
 								<echo message="delete compile files" />
 								<delete dir="${basedir}/src/main/resources">
-									<include name="**/applicationContext.xml" />
+									<include name="**/jdbc.properties" />
 									<include name="**/log4j.xml" />
 								</delete>
 							</tasks>
@@ -173,13 +154,13 @@
 							<tasks>
 								<echo message="delete config files to ${basedir}/src/main/resources/." />
 								<delete dir="${basedir}/src/main/resources">
-									<include name="**/applicationContext.xml" />
+									<include name="**/jdbc.properties" />
 									<include name="**/log4j.xml" />
 								</delete>
 								<echo message="copy config files to ${basedir}/src/main/resources/." />
 								<copy todir="${basedir}/src/main/resources/" encoding="UTF-8">
 									<fileset dir="${basedir}/build/config">
-										<include name="**/applicationContext.xml" />
+										<include name="**/jdbc.properties" />
 										<include name="**/log4j.xml" />
 									</fileset>
 									<filterset>
